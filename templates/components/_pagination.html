@@ -1,0 +1,16 @@
+<div class="pagination">
+    <ul class="container">
+        <li>
+            <a href="{% if not page_obj.has_previous %} #! {% else %} ?page={{ page_obj.previous_page_number }} {% endif %}" class="btn {% if not page_obj.has_previous %} btn--disabled {% endif %}">&#10094; Prev</a>
+        </li>
+        {% for page in custom_range %}
+            <li>
+                <a href="{% if page == page_obj.number %}#!{% else %} ?page={{ page }} {% endif %}" class="btn {% if page == page_obj.number %} btn--sub {% endif %}">{{ page }}</a>
+            </li>
+        {% endfor %}
+        <li>
+            <a href="{% if not page_obj.has_next %} #! {% else %} ?page={{ page_obj.next_page_number }} {% endif %}" class="btn {% if not page_obj.has_next %} btn--disabled {% endif %}">Next &#10095;</a>
+        </li>
+    </ul>
+    {{ page_obj.number }} / {{ page_obj.paginator.num_pages }}
+</div>
